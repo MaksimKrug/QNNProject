@@ -1,0 +1,14 @@
+{
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true,
+    "python.sortImports.args": [
+        "--profile=black",
+    ],
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        }
+    },
+    "python.linting.enabled": false,
+    "python.languageServer": "Pylance",
+}
