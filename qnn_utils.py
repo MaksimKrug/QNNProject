@@ -12,14 +12,16 @@ np.random.seed(0)
 tf.random.set_seed(255)
 
 
-def get_mnist_data():
+def get_mnist_data(n_train=None, n_test=None):
     # load mnist
     mnist_dataset = keras.datasets.mnist
     (train_images, train_labels), (test_images, test_labels) = mnist_dataset.load_data()
 
     # restrict data
-    train_images, train_labels = train_images[:5000], train_labels[:5000]
-    test_images, test_labels = test_images[:500], test_labels[:500]
+    if n_train:
+        train_images, train_labels = train_images[:n_train], train_labels[:n_train]
+    if n_test:
+        test_images, test_labels = test_images[:n_test], test_labels[:n_test]
 
     # split test val
     train_images, val_images, train_labels, val_labels = train_test_split(
@@ -39,7 +41,7 @@ def get_mnist_data():
     return train_images, val_images, test_images, train_labels, val_labels, test_labels
 
 
-def get_quantum_data(train_images, val_images, test_images, n_layers=1, n_wires=1):
+def get_quantum_data(train_images, val_images, test_images, n_layers=1, n_wires=1, return_test=True):
     start_time = time.time()
     # init device
     dev = qml.device("default.qubit", wires=n_wires)
@@ -93,13 +95,15 @@ def get_quantum_data(train_images, val_images, test_images, n_layers=1, n_wires=
         q_val_images.append(quanv(img, n_wires))
     q_val_images = np.asarray(q_val_images)
 
-    # generate test images
-    q_test_images = []
-    for idx, img in enumerate(tqdm(test_images)):
-        q_test_images.append(quanv(img, n_wires))
-    q_test_images = np.asarray(q_test_images)
+    if return_test:
+        # generate test images
+        q_test_images = []
+        for idx, img in enumerate(tqdm(test_images)):
+            q_test_images.append(quanv(img, n_wires))
+        q_test_images = np.asarray(q_test_images)
 
-    return time.time() - start_time, q_train_images, q_val_images, q_test_images
+        return time.time() - start_time, q_train_images, q_val_images, q_test_images
+    return time.time() - start_time, q_train_images, q_val_images
 
 
 def CNNModel():
