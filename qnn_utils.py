@@ -111,7 +111,7 @@ def CNNModel():
     which is ready to be trained."""
     model = keras.models.Sequential(
         [
-            keras.layers.Conv2D(50, 5, activation="relu"),
+            keras.layers.Conv2D(32, 5, activation="relu"),
             keras.layers.MaxPool2D(),
             keras.layers.Conv2D(64, 5, activation="relu"),
             keras.layers.Flatten(),
