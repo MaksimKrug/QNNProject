@@ -46,7 +46,16 @@ the processing of classical data into and out of the random quantum circuit in t
 
 ## Experiments
 1. **CNN Model**
-Conv2D(32, 5) -> MaxPool2D -> Conv2D(64, 5) -> MaxPool2D -> Flatten -> Dense(1024) -> Dropout(0.4) -> Dense(10)
+
+```
+keras.layers.Conv2D(32, 5, activation="relu")
+keras.layers.MaxPool2D()
+keras.layers.Conv2D(64, 5, activation="relu")
+keras.layers.Flatten()
+keras.layers.Dense(1024, activation="relu")
+keras.layers.Dropout(0.4)
+keras.layers.Dense(10, activation="softmax")
+```
 
 2. **Find the best QNN hyperparameters** (Train=2500, Test=500)
 
