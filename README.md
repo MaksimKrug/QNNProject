@@ -44,10 +44,11 @@ the processing of classical data into and out of the random quantum circuit in t
 3. Potential resiliency to unknown but consistent error models. Since quanvolutional layer feature maps result from transforming data through random quantum circuits, it is reasonable to assume that adding in particular error models does not necessarily invalidate the overall algorithm. Conceptually, many forms of quantum error can be thought of as unknown, and unwanted, gate operations. For example, the user attempts to run a particular quantum circuit, and due to hardware imperfections and limitations, some subtle and hidden “noisy quantum gates are also added into the circuit, resulting in a final quantum state different than desired. Since QNNs use the quantum circuits as feature detectors, and it is not clear a priori which quantum circuits leads to the most useful features, adding in some unknown “noise” gates does not necessarily impact feature detection quality overall.
 
 ## Experiments
-1. **CNN Model**\
+1. **CNN Model**
 Conv2D(32, 5) -> MaxPool2D -> Conv2D(64, 5) -> MaxPool2D -> Flatten -> Dense(1024) -> Dropout(0.4) -> Dense(10)
 
 2. **Find the best QNN hyperparameters** (Train=2500, Test=500)
+
 |Layers|Wires|Time Processing, sec.|Accuracy|
 |------|-----|---------------------|--------|
 |Classic|Classic|Classic|0.964|
@@ -62,6 +63,7 @@ Conv2D(32, 5) -> MaxPool2D -> Conv2D(64, 5) -> MaxPool2D -> Flatten -> Dense(102
 |3|4|20747|0.966|
 
 3. **Test diefferent test size**
+
 |Model Type|Train Size|Time Processing| Accuracy|
 |----------|----------|---------------|---------|
 |Classic|100|-|0.736|
